@@ -583,7 +583,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================
     // INITIALIZE
     // ================================
-    
+    // ================================
+// PROJECT NAVIGATION
+// ================================
+
+const projectButtons = document.querySelectorAll('.project-card .primary-btn');
+
+projectButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const projectCard = this.closest('.project-card');
+        const projectTitle = projectCard.querySelector('h3').textContent;
+        
+        // Map project titles to their HTML files
+        const projectPages = {
+            'Algorithm Visual Playground': 'projects/algorithm-visualizer.html',
+            'Plagiarism Detection System': 'projects/plagiarism-checker.html',
+            'Student Performance Analyzer': 'projects/student-analyzer.html'
+        };
+        
+        const projectPage = projectPages[projectTitle];
+        
+        if (projectPage) {
+            window.location.href = projectPage;
+        } else {
+            console.error('Project page not found for:', projectTitle);
+        }
+    });
+});
     console.log('%c✅ All systems operational', 'color: #baf2e9; font-size: 12px; font-weight: bold;');
     
     // Trigger initial updates
